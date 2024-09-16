@@ -2,16 +2,23 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './screens/Homepage';
-import About from './screens/About';
-
+import CodeEditorPage from './screens/CodeEditorPage';
+import CustomContextMenu from './components/CustomContextMenu';
+import Logging from './components/FocusLogger';
+import Footer from './components/Footer';
 function App() {
   return (
+    <>
+    <CustomContextMenu />
+    <Logging />
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/CodeEditor" element={<CodeEditorPage />} />
       </Routes>
     </Router>
+    <Footer />
+    </>
   );
 }
 

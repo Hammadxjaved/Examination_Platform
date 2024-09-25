@@ -1,27 +1,28 @@
 // server.js
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const cors = require('cors'); // Import the CORS package
+const db = require('./db')
+require('dotenv').config();
+console.log(process.env.PORT)
+const port = process.env.PORT || 3000;
 
+const express = require('express');
 const app = express();
 app.use(express.json());
+
+
+const cors = require('cors'); // Import the CORS package
 app.use(cors()); // Enable CORS for all origins
 
-// Endpoint to handle log requests
-app.post('/log', (req, res) => {
-    const { message } = req.body;
 
-    // Append log message to a file
-    fs.appendFile(path.join(__dirname, 'logs.txt'), `${new Date().toISOString()} - ${message}\n`, (err) => {
-        if (err) {
-            console.error('Failed to write to log file', err);
-            return res.status(500).send('Failed to log message');
-        }
-        res.send('Log message recorded');
-    });
+const userRoutes = require('./routes/userRoutes'); // Import the user routes
+app.use(userRoutes); // Use the imported user routes
+
+const logging = require('./routes/logging')
+app.use(logging);
+
+app.get('/', (req, res) => {
+    res.send('MongoDB connected with Express');
 });
 
-app.listen(3001, () => {
-    console.log('Server is running on port 3001');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });

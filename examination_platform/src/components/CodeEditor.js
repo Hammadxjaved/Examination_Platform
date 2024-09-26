@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Split from 'react-split';
-import './ScrollBar.css'
+import './styles/ScrollBar.css'
 import {OrbitProgress} from 'react-loading-indicators'
 
 export default function CodeEditor() {
@@ -15,7 +15,9 @@ export default function CodeEditor() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setOutput(<OrbitProgress variant="track-disc" dense color="#ffffff" size="large" text="" textColor="#000000" />)
+
+    setOutput(<div className='container'><OrbitProgress variant="track-disc" dense color="#ffffff" size="large" text="" textColor="#000000" /></div>)
+
     const payload = {
       language: 'python',
       version: '3.10.0',
@@ -169,7 +171,8 @@ export default function CodeEditor() {
               }}
             >
               <h3>Output:</h3>
-              <pre>{output || error}</pre>
+
+              <div>{output || error}</div>
             </div>
 
             {/* Test Cases Section */}

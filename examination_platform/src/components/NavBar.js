@@ -21,6 +21,7 @@ function NavScrollExample() {
           >
             <Nav.Link as={Link} to="/" style={{ textDecoration: 'none' }}>Home</Nav.Link>
             <Nav.Link as={Link} to="/CodeEditor" style={{ textDecoration: 'none' }}>Compiler</Nav.Link>
+            <Nav.Link as={Link} to="/exam" style={{ textDecoration: 'none' }}>Exam</Nav.Link>
             {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">

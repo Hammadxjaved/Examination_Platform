@@ -4,9 +4,18 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthProvider';
 
 function NavScrollExample() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <div>
     <Navbar expand="lg" className="bg-dark navbar-dark">
@@ -22,6 +31,11 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/" style={{ textDecoration: 'none' }}>Home</Nav.Link>
             <Nav.Link as={Link} to="/CodeEditor" style={{ textDecoration: 'none' }}>Compiler</Nav.Link>
             <Nav.Link as={Link} to="/exam" style={{ textDecoration: 'none' }}>Exam</Nav.Link>
+            {!user ? (
+            <Nav.Link as={Link} to="/login" style={{ textDecoration: 'none' }}>Login</Nav.Link>
+          ) : (
+            <Nav.Link onClick={handleLogout} style={{ textDecoration: 'none' }}>Logout</Nav.Link>
+          )}
             {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">

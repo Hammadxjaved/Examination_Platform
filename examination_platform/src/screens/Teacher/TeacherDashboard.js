@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar';
+import NavBar from '../../components/layouts/NavBar';
 import React from 'react';
 
 const TeacherDashboard = () => {

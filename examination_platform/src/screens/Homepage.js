@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../components/NavBar';
+import NavBar from '../components/layouts/NavBar';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 import {  ListGroup } from 'react-bootstrap';

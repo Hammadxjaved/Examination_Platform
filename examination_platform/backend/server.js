@@ -16,6 +16,14 @@ app.use(cors()); // Enable CORS for all origins
 const userRoutes = require('./routes/userRoutes'); // Import the user routes
 app.use(userRoutes); // Use the imported user routes
 
+const teacherRoutes = require('./routes/teacherRoutes'); // Import the teacher routes
+app.use(teacherRoutes); // Use the imported teacher routes
+
+    
+const programsRoutes = require('./routes/programsRoutes'); // Import the programs routes
+app.use(programsRoutes); // Use the imported programs routes
+
+
 const logging = require('./routes/logging')
 app.use(logging);
 

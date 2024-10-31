@@ -1,19 +1,24 @@
 import './App.css';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// Screens 
 import Homepage from './screens/Homepage';
-import CodeEditorPage from './screens/CodeEditorPage';
-import Test from './screens/testScreen'
-import CustomContextMenu from './components/CustomContextMenu';
-import Logging from './components/FocusLogger';
-import Footer from './components/Footer';
-import Exam from './components/AutoSubmitForm';
+import StudentDashboard from './screens/Student/StudentDashboard';
+import TeacherDashboard from './screens/Teacher/TeacherDashboard';
+import AdminDashboard from './screens/Admin/AdminDashboard';
+import CodeEditorPage from './screens/Student/CodeEditorPage';
+import Test from './screens/testScreen';
 import LoginPage from './screens/LoginPage';
-import { AuthProvider } from './components/AuthProvider';
-import ProtectedRoute from './components/ProtectedRoute';
-import StudentDashboard from './screens/StudentDashboard';
-import TeacherDashboard from './screens/TeacherDashboard';
-import AdminDashboard from './screens/AdminDashboard';
-import Login from './screens/LoginPage';
+
+// Components
+import CustomContextMenu from './components/layouts/CustomContextMenu';
+import Logging from './components/layouts/FocusLogger';
+import Footer from './components/layouts/Footer';
+
+// Authentication
+import { AuthProvider } from './components/Authentication/AuthProvider';
+import ProtectedRoute from './components/Authentication/ProtectedRoute';
 
 function App() {
   return (
@@ -23,11 +28,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/exam" element={<Exam />} />
+        <Route path="/exam" element={<Test />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/CodeEditor" element={<CodeEditorPage />} />
         <Route path="/student" element={<ProtectedRoute role="student" />}>
             <Route path="dashboard" element={<StudentDashboard />} />

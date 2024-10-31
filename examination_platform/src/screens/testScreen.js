@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import NavBar from '../components/NavBar';
+import Exam from '../components/AutoSubmitForm';
+import NavBar from '../components/layouts/NavBar';
+
 
 const addUser = async (formData) => {
     try {
@@ -34,6 +36,7 @@ const showUsers = async (setUsers) => {
     }
 };
 
+
 export default function TestScreen() {
     const [formData, setFormData] = useState({
         name: "",
@@ -41,7 +44,7 @@ export default function TestScreen() {
         password: ""
     });
 
-    const [setSubmittedData] = useState(null);
+    // const [SubmittedData, setSubmittedData] = useState(null);
     const [users, setUsers] = useState([]); // State to store fetched users
 
     const handleChange = (e) => {
@@ -59,7 +62,7 @@ export default function TestScreen() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmittedData(formData); // Store the submitted data
+        // setSubmittedData(formData); // Store the submitted data
 
         // Call addUser and await its completion
         const newUser = await addUser(formData);
@@ -123,6 +126,7 @@ export default function TestScreen() {
                     )}
                 </div>
             </div>
+            {/* <Exam /> */}
         </div>
     );
 }

@@ -7,7 +7,7 @@ const AutoSubmitForm = () => {
     email: "",
   });
 
-  const [timeLeft, setTimeLeft] = useState(60); // 5 minutes in seconds (300)
+  const [timeLeft, setTimeLeft] = useState(10); // 5 minutes in seconds (300)
   const navigate = useNavigate(); // Hook for redirection
 
   // Function to handle form submission
@@ -16,6 +16,7 @@ const AutoSubmitForm = () => {
     console.log("Form submitted:", formData);
     // Simulate form submission or add your logic here
     // Redirect to home route after submission
+    
     navigate("/");
   };
 

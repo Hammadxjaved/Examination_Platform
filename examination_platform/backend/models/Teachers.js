@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const TeachersSchema = new mongoose.Schema({
+    teacher_id: {
+        type: String,
+        unique: true,
+        required: true, // Ensure that it is required
+    },
     name: {
         type: String,
         required: true,
@@ -16,11 +21,6 @@ const TeachersSchema = new mongoose.Schema({
     },
     designation: {
         type: String,
-        required: true,
-    },
-    id: {
-        type: String,
-        unique: true,
         required: true,
     },
 });

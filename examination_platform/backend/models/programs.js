@@ -1,15 +1,20 @@
 const mongoose = require('mongoose');
 
-const coursesSchema = new mongoose.Schema({
-    program_name: {
-        type: String,
-        required: true,
-    },
-    number_of_semesters: {
-        type: String,
-        required: true,
-        unique: true,
-    },
+const ProgramSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: false
+  },
+  courses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course'
+    }
+  ]
 });
 
-module.exports = mongoose.model('courses', coursesSchema);
+module.exports = mongoose.model('Program', ProgramSchema);

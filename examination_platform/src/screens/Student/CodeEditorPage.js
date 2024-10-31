@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../components/NavBar';
-import CodeEditor from '../components/CodeEditor';
-import FullscreenHandler from '../components/FullscreenHandler';
+import NavBar from '../../components/layouts/NavBar';
+import CodeEditor from '../../components/CodeEditor';
+import FullscreenHandler from '../../components/layouts/FullscreenHandler';
 
 
 export default function About() {

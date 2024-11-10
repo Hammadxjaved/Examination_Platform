@@ -14,6 +14,10 @@ const CourseSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  semester:{
+    type:String,
+    required:true
+  },
   programs: [
     {
       type: mongoose.Schema.Types.ObjectId,

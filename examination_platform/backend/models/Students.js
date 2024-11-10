@@ -28,7 +28,7 @@ const StudentsSchema = new mongoose.Schema({
     program: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'programs',
-        required: true,
+        required: false,
     },
     semester: {
         type: String,

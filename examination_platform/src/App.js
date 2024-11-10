@@ -6,8 +6,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './screens/Homepage';
 import StudentDashboard from './screens/Student/StudentDashboard';
 import TeacherDashboard from './screens/Teacher/TeacherDashboard';
-import AdminDashboard from './screens/Admin/AdminDashboard';
 import CodeEditorPage from './screens/Student/CodeEditorPage';
+import AdminDashboard from './screens/Admin/AdminDashboard';
+import ProgramDetail from './screens/Admin/ProgramDetail';
+import TeacherDetail from './screens/Admin/TeacherDetail';
 import Test from './screens/testScreen';
 import LoginPage from './screens/LoginPage';
 
@@ -42,6 +44,8 @@ function App() {
 
           <Route path="/admin" element={<ProtectedRoute role="admin" />}>
             <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="program/:id" element={<ProgramDetail />} />
+            <Route path="teacher/:id" element={<TeacherDetail />} />
           </Route>
       </Routes>
     </Router>

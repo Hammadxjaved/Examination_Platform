@@ -11,6 +11,7 @@ const LoginForm = () => {
 
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // New state for password visibility
 
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -18,37 +19,71 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    
     await delay(500);
-    console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-    if (inputUsername !== "admin" || inputPassword !== "admin" || role !== "admin") {
-      setShow(true);
-      setLoading(false);
+    console.log(`Username: ${inputUsername}, Password: ${inputPassword}`);
+    
+    let userData = null;
 
-    }
-    else {
-      login({ role });
-      setLoading(false);
-      navigate(`/${role}/dashboard`);
+    try {
+        if (role === "student") {
+            const response = await fetch('http://localhost:3001/students');
+            if (!response.ok) throw new Error("Failed to fetch students");
+
+            const students = await response.json();
+            const student = students.find(
+                (s) => s.enrollment_no === inputUsername && s.password === inputPassword
+            );
+
+            if (student) {
+                userData = student;
+            }
+
+        } else if (role === "teacher") {
+            const response = await fetch('http://localhost:3001/teachers');
+            if (!response.ok) throw new Error("Failed to fetch teachers");
+
+            const teachers = await response.json();
+            const teacher = teachers.find(
+                (t) => t.name === inputUsername && t.password === inputPassword
+            );
+
+            if (teacher) {
+                userData = teacher;
+            }
+        }
+
+        else if (inputUsername === "admin" && inputPassword === "admin" && role === "admin") {
+            userData = { role: "admin" };
+        }
+
+        if (userData) {
+            login({...userData, "role":role});
+            navigate(`/${role}/dashboard`);
+        } else {
+            setShow(true);
+        }
+    } catch (error) {
+        console.error("Error during login", error);
+        setShow(true);
+    } finally {
+        setLoading(false);
     }
   };
 
-  const handlePassword = () => { };
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword);  // Toggle showPassword state
+  };
 
   function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-  return (
-    <div
-      className="sign-in__wrapper"
-    // style={{ backgroundImage: `url(${BackgroundImage})` }}
-    >
-      <div className="sign-in__backdrop"></div>
-      {/* Form */}
-      <Form className="shadow p-4 bg-white rounded" onSubmit={handleSubmit}>
-        {/* Header */}
 
+  return (
+    <div className="sign-in__wrapper">
+      <div className="sign-in__backdrop"></div>
+      <Form className="shadow p-4 bg-white rounded" onSubmit={handleSubmit}>
         <div className="h4 mb-2 text-center">Sign In</div>
-        {/* ALert */}
         {show ? (
           <Alert
             className="mb-2"
@@ -84,10 +119,10 @@ const LoginForm = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-2" controlId="password">
+        <Form.Group className="mb-2 position-relative" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
+            type={showPassword ? "text" : "password"}  // Toggle password visibility
             value={inputPassword}
             placeholder="Password"
             onChange={(e) => setInputPassword(e.target.value)}
@@ -95,7 +130,8 @@ const LoginForm = () => {
           />
         </Form.Group>
         <Form.Group className="mb-2" controlId="checkbox">
-          <Form.Check type="checkbox" label="Remember me" />
+
+          <Form.Check type="checkbox" label="Show password" onClick={handlePasswordToggle} />
         </Form.Group>
         {!loading ? (
           <Button className="w-100" variant="primary" type="submit">
@@ -110,7 +146,6 @@ const LoginForm = () => {
           <Button
             className="text-muted px-0"
             variant="link"
-            onClick={handlePassword}
           >
             Forgot password?
           </Button>

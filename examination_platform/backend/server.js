@@ -19,6 +19,9 @@ app.use(userRoutes); // Use the imported user routes
 const teacherRoutes = require('./routes/teacherRoutes'); // Import the teacher routes
 app.use(teacherRoutes); // Use the imported teacher routes
 
+const studentRoutes = require('./routes/studentRoutes.js'); // Import the student routes
+app.use(studentRoutes); // Use the imported student routes
+
     
 const programsRoutes = require('./routes/programsRoutes'); // Import the programs routes
 app.use(programsRoutes); // Use the imported programs routes

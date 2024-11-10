@@ -9,6 +9,10 @@ const ProgramSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  semester:{
+    type:Number,
+    required:false
+  },
   courses: [
     {
       type: mongoose.Schema.Types.ObjectId,

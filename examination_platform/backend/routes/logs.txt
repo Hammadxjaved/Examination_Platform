@@ -588,3 +588,8 @@
 2024-11-09T13:41:18.581Z - Screen was out of focus for 8.129 seconds
 2024-11-09T13:42:13.007Z - Screen was out of focus for 1.355 seconds
 2024-11-09T13:44:26.587Z - Screen was out of focus for 35.259 seconds
+2024-11-10T08:23:37.937Z - Screen was out of focus for 194.154 seconds
+2024-11-10T08:47:46.176Z - Screen was out of focus for 1285.992 seconds
+2024-11-10T08:49:46.510Z - Screen was out of focus for 112.794 seconds
+2024-11-10T09:25:39.801Z - Screen was out of focus for 83.754 seconds
+2024-11-10T09:26:14.598Z - Screen was out of focus for 1.449 seconds

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Exam from '../components/AutoSubmitForm';
+// import Exam from '../components/AutoSubmitForm';
+// import Chatbox from '../components/Chatbox';
 import NavBar from '../components/layouts/NavBar';
 
 
@@ -75,6 +76,7 @@ export default function TestScreen() {
     return (
         <div>
             <NavBar />
+            {/* <Chatbox /> */}
             <div style={{ padding: "20px" }}>
                 <h2>Submit Your Info</h2>
                 <form onSubmit={handleSubmit}>

@@ -84,7 +84,8 @@ export default function AdminDashboard() {
 
     const [programData, setProgramData] = useState({
         name: "",
-        description: ""
+        description: "",
+        semester : ""
     });
 
     const [users, setUsers] = useState([]);
@@ -143,7 +144,7 @@ export default function AdminDashboard() {
         e.preventDefault();
         const newProgram = await addProgram(programData);
         if (newProgram) {
-            setProgramData({ name: "", description: "" });
+            setProgramData({ name: "", description: "", semester: "" });
             showPrograms(setPrograms);
         }
     };
@@ -254,6 +255,16 @@ export default function AdminDashboard() {
                                     type="text"
                                     name="description"
                                     value={programData.description}
+                                    onChange={handleProgramChange}
+                                />
+                            </Form.Group>
+                            
+                            <Form.Group controlId="formProgramSemester">
+                                <Form.Label>Semester</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="semester"
+                                    value={programData.semester}
                                     onChange={handleProgramChange}
                                 />
                             </Form.Group>

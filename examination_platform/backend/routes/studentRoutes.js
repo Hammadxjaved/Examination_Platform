@@ -14,9 +14,26 @@ router.get('/students', async (req, res) => {
     }
 });
 
+router.get('/students/program/:programId', async (req, res) => {
+    const { programId } = req.params;
+
+    try {
+        // Find students with the specific program ID
+        const students = await Student.find({ program: programId });
+
+        if (students.length === 0) {
+            return res.status(404).json({ message: 'No students found for this program' });
+        }
+
+        res.status(200).json(students);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+});
+
 router.get('/student/:id', async (req, res) => {
     try {
-        const student = await Student.findById();
+        const student = await Student.findById(req.params.id);
         res.status(200).json(student);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -37,13 +54,13 @@ router.delete('/students/:id', async (req, res) => {
 const Program = require('../models/programs'); // Program model
 router.post('/students/:id', async (req, res) => {
     const program = await Program.findById(req.params.id);
-    const {name, email, password, faculty_number, enrollment_no,semester } = req.body;
+    const {name, email, password, faculty_number, enrollment_no, semester } = req.body;
     if (!name || !email || !password || !faculty_number || !enrollment_no || !program|| !semester) {
         return res.status(400).json({ message: 'All fields are required'});
     }
     
     try {
-      const newStudent = new Student({name, email, password, faculty_number, enrollment_no, program,semester });
+      const newStudent = new Student({name, email, password, faculty_number, enrollment_no, program, semester });
         await newStudent.save();
         res.status(201).json(newStudent);
     } catch (error) {

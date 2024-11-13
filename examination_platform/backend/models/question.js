@@ -18,6 +18,10 @@ const QuestionSchema = new mongoose.Schema({
   marks: {
     type: Number,
     required: true
+  },
+  response: {
+    type:String,
+    required:false
   }
 });
 

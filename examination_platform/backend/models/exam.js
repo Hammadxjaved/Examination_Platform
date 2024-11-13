@@ -17,7 +17,7 @@ const ExamSchema = new mongoose.Schema({
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Teacher', 
+    ref: 'Teacher',
     required: true
   },
   status: {

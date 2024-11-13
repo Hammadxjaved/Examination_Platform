@@ -22,9 +22,18 @@ app.use(teacherRoutes); // Use the imported teacher routes
 const studentRoutes = require('./routes/studentRoutes.js'); // Import the student routes
 app.use(studentRoutes); // Use the imported student routes
 
-    
+const examRoutes = require('./routes/examRoutes.js'); // Import the exam routes
+app.use(examRoutes); // Use the imported exam routes
+
+const questionRoutes = require('./routes/questionRoutes.js'); // Import the question routes
+app.use(questionRoutes); // Use the imported question routes
+
 const programsRoutes = require('./routes/programsRoutes'); // Import the programs routes
 app.use(programsRoutes); // Use the imported programs routes
+    
+
+const coursesRoutes = require('./routes/courseRoutes'); // Import the courses routes
+app.use(coursesRoutes); // Use the imported courses routes
 
 
 const logging = require('./routes/logging')

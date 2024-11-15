@@ -15,6 +15,7 @@ const CourseDetails = () => {
     const fetchCourseDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/course/${id}`);
+        sessionStorage.setItem('course', JSON.stringify(response.data));
         setCourse(response.data);
         setLoading(false);
       } catch (err) {
@@ -82,7 +83,7 @@ const CourseDetails = () => {
           </Card>
         </Col>
       </Row>
-      <Link to={`../createExam/${id}`}>
+      <Link to={`../createExam`}>
         <button>Create Exam</button>
       </Link>
     </Container>

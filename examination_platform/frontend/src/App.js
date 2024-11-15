@@ -7,7 +7,7 @@ import Homepage from './screens/Homepage';
 import StudentDashboard from './screens/Student/StudentDashboard';
 import TeacherDashboard from './screens/Teacher/TeacherDashboard';
 import CourseDetails from './screens/Teacher/CourseDetails';
-import CreateExam from './screens/Teacher/CreateExam';
+import CreateExam from './screens/Teacher/CreateExam2';
 import CodeEditorPage from './screens/Student/CodeEditorPage';
 import AdminDashboard from './screens/Admin/AdminDashboard';
 import ProgramDetail from './screens/Admin/ProgramDetail';
@@ -36,14 +36,23 @@ function App() {
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/CodeEditor" element={<CodeEditorPage />} />
+
         <Route path="/student" element={<ProtectedRoute role="student" />}>
             <Route path="dashboard" element={<StudentDashboard />} />
+
+            <Route path="exam" element={<br/>} />
+            <Route path="exams/:id/take" element={<br />} />
+            {/* <Route path="exams/:id/result" element={<ExamRe />} /> */}
           </Route>
 
           <Route path="/teacher" element={<ProtectedRoute role="teacher" />}>
             <Route path="dashboard" element={<TeacherDashboard />} />
             <Route path="course/:id" element={<CourseDetails />} />
-            <Route path="createExam/:id" element={<CreateExam />} />
+            <Route path="createExam/" element={<CreateExam />} />
+            <Route path="exams" element={<br />} />
+            <Route path="exams/create" element={<br />} />
+            {/* <Route path="exams/:id/edit" element={<ExamEditor />} /> */}
+
           </Route>
 
           <Route path="/admin" element={<ProtectedRoute role="admin" />}>

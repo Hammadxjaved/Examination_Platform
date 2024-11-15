@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 const ExamSchema = new mongoose.Schema({
@@ -17,13 +18,13 @@ const ExamSchema = new mongoose.Schema({
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Teacher',
+    ref: 'Teachers',
     required: true
   },
   status: {
     type: String,
-    enum: ['upcoming', 'ongoing', 'completed'],
-    required: true
+    enum: ['scheduled', 'ongoing', 'completed'],
+    default: 'scheduled'
   },
   startTime: {
     type: Date,
@@ -32,7 +33,30 @@ const ExamSchema = new mongoose.Schema({
   endTime: {
     type: Date,
     required: true
+  },
+  duration: {
+    type: Number,  // in minutes
+    required: true
+  },
+  totalMarks: {
+    type: Number,
+    required: true
+  },
+  instructions: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
+}, {
+  timestamps: true
 });
+
 
 module.exports = mongoose.model('Exam', ExamSchema);

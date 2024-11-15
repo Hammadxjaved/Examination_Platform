@@ -10,6 +10,7 @@ const TeacherDashboard = () => {
   const { user } = useAuth(); // Get authenticated user info
   const [teacherData] = useState(user);
   const [courses, setCourses] = useState([]);
+  const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,8 +26,21 @@ const TeacherDashboard = () => {
         setLoading(false);
       }
     };
+    
+    const fetchExams = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/exams/teacher/${user._id}`);
+        setExams(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load teacher data');
+        setLoading(false);
+      }
+    };
 
-    fetchCourses();
+
+    fetchCourses()
+    fetchExams()
   }, [user._id]);
 
   if (loading) return (
@@ -42,7 +56,8 @@ const TeacherDashboard = () => {
       <Container className="mt-4">
         <Row>
           <Col md={4}>
-            <Card>
+          <Row>
+            <Card style={{marginBottom:"5%"}}>
               <Card.Header as="h5">{teacherData.name}'s Dashboard</Card.Header>
               <Card.Body>
                 <Card.Text>
@@ -53,6 +68,27 @@ const TeacherDashboard = () => {
                 </Card.Text>
               </Card.Body>
             </Card>
+            <Card style={{marginBottom:"5%"}}>
+              <Card.Header as="h5">Exams</Card.Header>
+              <Card.Body>
+                {exams.length > 0 ? (
+                  <ListGroup>
+                    {exams.map((exam) => (
+                      <ListGroup.Item key={exam._id}>
+                        <span onClick={() => navigate(`/teacher/exam/${exam._id}`)} style={{ cursor: "pointer", color: "#007bff" }}>
+                        <strong>{exam.title}</strong> - {exam.startTime} 
+                        <span className="text-muted"> (Status: {exam.status})</span>
+                                    </span>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                ) : (
+                  <Alert variant="info">No Exams found for this teacher.</Alert>
+                )}
+              </Card.Body>
+            </Card>
+
+          </Row>
           </Col>
 
           <Col md={8}>

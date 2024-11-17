@@ -12,6 +12,8 @@ import CodeEditorPage from './screens/Student/CodeEditorPage';
 import AdminDashboard from './screens/Admin/AdminDashboard';
 import ProgramDetail from './screens/Admin/ProgramDetail';
 import TeacherDetail from './screens/Admin/TeacherDetail';
+import AttemptExam from './screens/Student/AttemptExam';
+import StudentProgress from './screens/Student/StudentProgress';
 import Test from './screens/testScreen';
 import LoginPage from './screens/LoginPage';
 
@@ -23,6 +25,8 @@ import Footer from './components/layouts/Footer';
 // Authentication
 import { AuthProvider } from './components/Authentication/AuthProvider';
 import ProtectedRoute from './components/Authentication/ProtectedRoute';
+import Exams from './screens/Teacher/Exams';
+import EvaluateResponses from './screens/Teacher/EvaluateResponses';
 
 function App() {
   return (
@@ -40,8 +44,8 @@ function App() {
         <Route path="/student" element={<ProtectedRoute role="student" />}>
             <Route path="dashboard" element={<StudentDashboard />} />
 
-            <Route path="exam" element={<br/>} />
-            <Route path="exams/:id/take" element={<br />} />
+            <Route path="exam" element={<AttemptExam/>} />
+            <Route path="progress" element={<StudentProgress/>} />
             {/* <Route path="exams/:id/result" element={<ExamRe />} /> */}
           </Route>
 
@@ -49,8 +53,8 @@ function App() {
             <Route path="dashboard" element={<TeacherDashboard />} />
             <Route path="course/:id" element={<CourseDetails />} />
             <Route path="createExam/" element={<CreateExam />} />
-            <Route path="exams" element={<br />} />
-            <Route path="exams/create" element={<br />} />
+            <Route path="exams" element={<Exams />} />
+            <Route path="exams/evaluate" element={<EvaluateResponses />} />
             {/* <Route path="exams/:id/edit" element={<ExamEditor />} /> */}
 
           </Route>

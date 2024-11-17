@@ -64,6 +64,7 @@ router.post('/students/:id', async (req, res) => {
         await newStudent.save();
         res.status(201).json(newStudent);
     } catch (error) {
+        console.log(error.message)
         res.status(401).json({ error: error.message });
     }
 });

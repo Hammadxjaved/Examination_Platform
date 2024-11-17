@@ -83,10 +83,15 @@ const CourseDetails = () => {
           </Card>
         </Col>
       </Row>
+      <br/>
       <Link to={`../createExam`}>
-        <button>Create Exam</button>
+        <button className='btn'>Create Exam</button>
       </Link>
     </Container>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>
 
   );
